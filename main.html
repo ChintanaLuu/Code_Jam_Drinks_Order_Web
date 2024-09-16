@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Food Order Website!</title>
+        <!--Content-Type: application/json-->
+        <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
+        
+        
+        <!--Bootstrap-->
+        <link rel=”stylesheet” href=”https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css”rel=”nofollow” integrity=”sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I” crossorigin=”anonymous”>
+      </head>
+      <body>
+        
+        <script>
+
+        // Hide API key in environment.
+        require('dotenv').config(); // Require is not defined.
+        console.log(process.env.HIDDEN_API_KEY);
+                
+        const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
+        fetch(API_URL)
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        </script>
+
+    </body>   
+    </html>
