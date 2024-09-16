@@ -4,18 +4,30 @@
       <meta charset="UTF-8">
       <title>Food Order Website!</title>
         <!--Content-Type: application/json-->
-        <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
-        
-        
+        <!--CSS-->
+        <link rel="stylesheet" href="styles.css">
         <!--Bootstrap-->
         <link rel=”stylesheet” href=”https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css”rel=”nofollow” integrity=”sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I” crossorigin=”anonymous”>
       </head>
       <body>
+
+        <div>
+          <h1>Drinks:</h1>
+          <p>Images by FreePik</p>
+        </div>
+
+
+        <div class="sidenav">
+          <img src="https://img.freepik.com/free-vector/cozy-autumn-cafe-illustration_23-2149076539.jpg?t=st=1726483307~exp=1726486907~hmac=c3bfea41287862485b93d414940c9905828e213949b620db1843b83e5f0e8196&w=740"></img alt="Cozy cafe in autumn.">
+        </div>
         
-        <script>
+
+
+        <script type="module">
 
         // Hide API key in environment.
-        require('dotenv').config(); // Require is not defined.
+        import 'dotenv/config' // Uncaught SyntaxError: Cannot use import statement outside a module.
+        require('dotenv').config();
         console.log(process.env.HIDDEN_API_KEY);
                 
         const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
