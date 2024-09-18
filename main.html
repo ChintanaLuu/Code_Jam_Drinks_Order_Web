@@ -4,6 +4,8 @@
       <meta charset="UTF-8">
       <title>Food Order Website!</title>
         <!--CSS-->
+        <link rel="stylesheet"
+        href="background_styles.css">
         <link rel="stylesheet" href="styles.css">
         <!--Bootstrap-->
         <link rel=”stylesheet” href=”https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css”rel=”nofollow” integrity=”sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I” crossorigin=”anonymous”>
@@ -31,12 +33,12 @@
         const imageElement = document.getElementById('roarImage')
 
         // Hide API key in environment.
-        import 'dotenv/config' // Uncaught SyntaxError: Cannot use import statement outside a module.
-        require('dotenv').config();
-        console.log(process.env.HIDDEN_API_KEY);
+        // import 'dotenv/config' // Uncaught SyntaxError: Cannot use import statement outside a module.
+        // require('dotenv').config();
+        // console.log(process.env.HIDDEN_API_KEY);
                 
 
-        const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
+        // const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
         fetch(API_URL)
         .then(res => {
             if (!res.ok) {
@@ -46,97 +48,24 @@
         })
         //
         .then(data => {
-          console.log(data);
-          // data does not have forEach function
+          const results = data.results; // Access 'results' array from returned API data.
+          
 
-
-          {
-//     "results": [
-//         {
-//             "id": 756814,
-//             "title": "Powerhouse Almond Matcha Superfood Smoothie",
-//             "image": "https://img.spoonacular.com/recipes/756814-312x231.jpg",
-//             "imageType": "jpg"
-//         },
-//         {
-//             "id": 655235,
-//             "title": "Peanut Butter and Jelly Smoothie",
-//             "image": "https://img.spoonacular.com/recipes/655235-312x231.jpg",
-//             "imageType": "jpg"
-//         },
-//         {
-//             "id": 1095729,
-//             "title": "Immunity Booster Beet, Carrot & Orange Juice",
-//             "image": "https://img.spoonacular.com/recipes/1095729-312x231.jpg",
-//             "imageType": "jpg"
-//         },
-//         {
-//             "id": 660227,
-//             "title": "Skinny Green Monster Smoothie",
-//             "image": "https://img.spoonacular.com/recipes/660227-312x231.jpg",
-//             "imageType": "jpg"
-//         },
-//         {
-//             "id": 641443,
-//             "title": "Detox Orange Carrot Juice",
-//             "image": "https://img.spoonacular.com/recipes/641443-312x231.jpg",
-//             "imageType": "jpg"
-//         },
-//         {
-//             "id": 644044,
-//             "title": "Protein Strawberry Smoothie",
-//             "image": "https://img.spoonacular.com/recipes/644044-312x231.jpg",
-//             "imageType": "jpg"
-//         },
-//         {
-//             "id": 1681373,
-//             "title": "Green Monster Smoothie Popsicles",
-//             "image": "https://img.spoonacular.com/recipes/1681373-312x231.jpg",
-//             "imageType": "jpg"
-//         },
-//         {
-//             "id": 780016,
-//             "title": "Chocolate Peanut Butter Cinnamon Smoothie",
-//             "image": "https://img.spoonacular.com/recipes/780016-312x231.png",
-//             "imageType": "png"
-//         },
-//         {
-//             "id": 631913,
-//             "title": "A Refreshing Drink To Welcome You All",
-//             "image": "https://img.spoonacular.com/recipes/631913-312x231.jpg",
-//             "imageType": "jpg"
-//         },
-//         {
-//             "id": 661740,
-//             "title": "Strawberry and Banana Lassi",
-//             "image": "https://img.spoonacular.com/recipes/661740-312x231.jpg",
-//             "imageType": "jpg"
-//         }
-//     ],
-//     "offset": 0,
-//     "number": 10,
-//     "totalResults": 204
-// }
-
-          var data = JSON.stringify([{"results": "id", "title", "image", "imageType"}]) // Syntax error: unexpected string.
-          data = JSON.parse(data); // main.html:71 Error: SyntaxError: "[object Object]" is not valid JSON
-          //at JSON.parse (<anonymous>)
-
-
-          data.forEach(drink =>{
-            const id = drink.id; // goes over each drink and gets specified details.
-            const title = drink.title
-            // const image = <img src= "${drink.image}"></img>
-            // const imageType = <li>drink.imageType</li> // list item
-            document.querySelector('titleRoar').insertAdjacentHTML('beforeend', id);
-          });
-          // outputElement.textContent = JSON.stringify(titleRoar)
-          // //JSON.stringify(image)
-      })
-      // ERROR AND BOTH NETWORK FOR 402 (PAYMENT REQUIRED)
-      .catch(error => {
-          console.error('Error:', error);
-      });
+          results.forEach(drink => {
+                    const drinkHTML = `
+                    <div class="grid-container">
+                        <div class="card-body">
+                          <img class="card-img-top" src="${drink.image}" alt="${drink.title}" />
+                          <h5 class="card-title">${drink.title}</h2>
+                        </div>
+                    </div>
+                    `;
+                    document.querySelector('#titleRoar').insertAdjacentHTML('beforeend', drinkHTML);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         </script>
 
     </body>   
