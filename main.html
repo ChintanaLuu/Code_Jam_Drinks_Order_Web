@@ -7,15 +7,19 @@
         <link rel="stylesheet" href="background_styles.css">
         <link rel="stylesheet" href="styles.css">
       </head>
-      <body class="background">
 
-        <div clas="col-center">
+      <body class="background-container">
+        <!-- cafe bg -->
+      <div class="left-background"></div>
+
+
+<!-- Pink -->
+      <div class="center-background">
+        <div class="col-center">
           <h1>Drinks:</h1>
-        </div>
-        
-        <div class="sidenav">
-          <img src="https://img.freepik.com/free-vector/cozy-autumn-cafe-illustration_23-2149076539.jpg?t=st=1726483307~exp=1726486907~hmac=c3bfea41287862485b93d414940c9905828e213949b620db1843b83e5f0e8196&w=740"></img alt="Cozy cafe in autumn.">
-          <!-- <p>Sidenav bar image by Freepik.</p> -->
+          <p>Attributions:</p>
+          <a href="https://www.flaticon.com/free-icons/shopping-cart" title="shopping cart icons">Shopping cart icons created by Freepik - Flaticon</a>
+          <p>Side images by Freepik.</p>
         </div>
         
         <!-- Grid container containing drinkHTML cells. -->
@@ -23,46 +27,48 @@
         </div>
         
         <script type="module">
-
-        // Hide API key in environment.
-        // import 'dotenv/config'
-        // require('dotenv').config();
-        // console.log(process.env.HIDDEN_API_KEY);
-                
-       
-
-        // const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
-        fetch(API_URL)
-        .then(res => {
+          
+          // Hide API key in environment.
+          // import 'dotenv/config'
+          // require('dotenv').config();
+          // console.log(process.env.HIDDEN_API_KEY);
+          
+          
+          // const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
+          fetch(API_URL)
+          .then(res => {
             if (!res.ok) {
-            throw new Error('Network response was not ok'); // Fetch returns nothing due to no wifi connection
+              throw new Error('Network response was not ok'); // Fetch returns nothing due to no wifi connection
             }
             return res.json(); // returns entire OK response converted to json. no network error.
-        })
-        //
-        .then(data => {
-          const results = data.results; // Access 'results' array from returned API data.
-          
-          results.forEach(drink => {
-                    const drinkHTML = `
-                    <div class="col-auto">
-                      <div class="card text-white bg-light"
-                        <div class="card-body">
-                          <img class="card-img-top" src="${drink.image}" alt="${drink.title}" />
-                          <h5 class="card-title">${drink.title}</h2>
-                          <p> ${drink.taste}</p> // This drink still needs a description!
-                           <a href="#" class="btn btn-primary">Add to Cart!</a>
-                            <a href="#" class="btn btn-primary">View Nutrition Information!</a>
-                        </div>
+          })
+          //
+          .then(data => {
+            const results = data.results; // Access 'results' array from returned API data.
+            
+            results.forEach(drink => {
+              const drinkHTML = `
+              <div class="col-auto">
+                <div class="card text-white bg-light"
+                <div class="card-body">
+                  <img class="card-img-top" src="${drink.image}" alt="${drink.title}" />
+                  <h5 class="card-title">${drink.title}</h2>
+                    <p> ${drink.taste}</p> // This drink still needs a description!
+                    <a href="#" class="btn img src="trolley.png">Add to Cart!</a>
+                    <a href="#" class="btn btn-primary">View Nutrition Information!</a>
+                    </div>
                     </div>
                     `;
                     document.querySelector('#cell').insertAdjacentHTML('beforeend', drinkHTML);
                   });
-            })
-            .catch(error => {
-                console.error('Error:', error);
+                })
+                .catch(error => {
+                  console.error('Error:', error);
             });
-        </script>
+            </script>
+</div>
+<!-- cafe bg -->
+<div class="right-background"></div>
 
-    </body>   
-    </html>
+</body>   
+</html>
