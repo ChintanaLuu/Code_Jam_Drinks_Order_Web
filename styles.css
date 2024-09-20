@@ -1,21 +1,49 @@
+.background{
+  background-color: #ffd0e3
+  /* #1c87c9; */
+}
+
+
 .grid-container{
   display: grid;
-  grid-template-colummns: repeat(4, 50px);
+  grid-template-columns: repeat(4, 0.5fr); /* Determine size of image.*/
   grid-auto-rows: minimax(1fr, auto);
   column-gap: 1rem;
   row-gap: 0.5rem;
   /* grid-template-areas: "body body" */
 }
 
-/* .grid-item{
-  grid-area: body;
-  grid-class: "card-body";
-} */
+/* Card styles */
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Zoom in on hover */
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
 
 // Use it with "div class="name".
 .sidenav {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 190px; /* Set the width of the sidebar */
+  height: 100%; /*Full-height: remove this if you want "auto" height */
+  width: 160px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */

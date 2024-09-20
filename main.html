@@ -4,39 +4,32 @@
       <meta charset="UTF-8">
       <title>Food Order Website!</title>
         <!--CSS-->
-        <link rel="stylesheet"
-        href="background_styles.css">
+        <link rel="stylesheet" href="background_styles.css">
         <link rel="stylesheet" href="styles.css">
-        <!--Bootstrap-->
-        <link rel=”stylesheet” href=”https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css”rel=”nofollow” integrity=”sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I” crossorigin=”anonymous”>
       </head>
-      <body>
+      <body class="background">
 
-        <div>
+        <div clas="col-center">
           <h1>Drinks:</h1>
-          <!-- <p>Images by FreePik</p> -->
         </div>
-        <!-- <div class="sidenav">
+        
+        <div class="sidenav">
           <img src="https://img.freepik.com/free-vector/cozy-autumn-cafe-illustration_23-2149076539.jpg?t=st=1726483307~exp=1726486907~hmac=c3bfea41287862485b93d414940c9905828e213949b620db1843b83e5f0e8196&w=740"></img alt="Cozy cafe in autumn.">
-        </div> -->
-        
-        <div>
-
-          <p id="titleRoar">placeholderText</p>
-          <img id="roarImage">none image</img>
+          <!-- <p>Sidenav bar image by Freepik.</p> -->
         </div>
         
+        <!-- Grid container containing drinkHTML cells. -->
+        <div class="grid-container" id="cell">
+        </div>
         
         <script type="module">
-          
-        const outputElement = document.getElementById('titleRoar')
-        const imageElement = document.getElementById('roarImage')
 
         // Hide API key in environment.
-        // import 'dotenv/config' // Uncaught SyntaxError: Cannot use import statement outside a module.
+        // import 'dotenv/config'
         // require('dotenv').config();
         // console.log(process.env.HIDDEN_API_KEY);
                 
+       
 
         // const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
         fetch(API_URL)
@@ -50,18 +43,21 @@
         .then(data => {
           const results = data.results; // Access 'results' array from returned API data.
           
-
           results.forEach(drink => {
                     const drinkHTML = `
-                    <div class="grid-container">
+                    <div class="col-auto">
+                      <div class="card text-white bg-light"
                         <div class="card-body">
                           <img class="card-img-top" src="${drink.image}" alt="${drink.title}" />
                           <h5 class="card-title">${drink.title}</h2>
+                          <p> ${drink.taste}</p> // This drink still needs a description!
+                           <a href="#" class="btn btn-primary">Add to Cart!</a>
+                            <a href="#" class="btn btn-primary">View Nutrition Information!</a>
                         </div>
                     </div>
                     `;
-                    document.querySelector('#titleRoar').insertAdjacentHTML('beforeend', drinkHTML);
-                });
+                    document.querySelector('#cell').insertAdjacentHTML('beforeend', drinkHTML);
+                  });
             })
             .catch(error => {
                 console.error('Error:', error);
