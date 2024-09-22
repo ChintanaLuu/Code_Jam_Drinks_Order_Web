@@ -1,40 +1,35 @@
 .background-container{
   display: grid;
-  grid-template-columns: 0.5fr 2fr 0.5fr; // Create thirds. Left and right cafe background. Center pink.
+  grid-template-columns: 0.5fr 2fr 0.5fr; /* Create thirds. Left and right cafe background. Center pink.*/
   width: 100%;
   height: 100%;
   
 }
 
+/* Cafe background */
 .left-background{
-  background: url('cozy-autumn-cafe-illustration_23-2149076539.jpg'); no-repeat center center / cover; // Image is not repeated and is centered to cover whole left-background container.
-  /* background-color: #1c87c9; */
+  background: url('cozy-autumn-cafe-illustration_23-2149076539.jpg') no-repeat center center / cover; /* Image is not repeated and is centered to cover whole left-background container.*/
 }
 
 .right-background{
-  background-color: #1c87c9;
+  background: url('cozy-autumn-cafe-illustration_23-2149076539.jpg') no-repeat center center / cover; /* Image is not repeated and is centered to cover whole left-background container.*/
 }
 
+/* Blue background */
+
+.left-blue-background{
+  background-color: #85CCF0;
+}
+
+.right-blue-background{
+  background-color: #85CCF0;
+}
 
 .center-background{
-  background: url('cozy-autumn-cafe-illustration_23-2149076539.jpg'); no-repeat center center / cover;
-  /* background-color: #ffd0e3; */
+  background-color: #ffd0e3;
 }
 
-
-// Use it with "div class="name".
-.sidenav {
-  height: 100%; /*Full-height: remove this if you want "auto" height */
-  width: 160px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #111; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
-}
-
+/* Main Display Grid */
 .grid-container{
   display: grid;
   grid-template-columns: repeat(4, 0.5fr); /* Determine size of image.*/
@@ -82,3 +77,29 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+/* Cart Display Grid */
+.cart-grid-container {
+  display: grid;
+  grid-template-rows: auto;
+  width: 500px;
+  /* width: 100%; */
+  height: 20px;
+}
+
+/* Display bar 0px from right of screen. */
+.cart-total-bar {
+  margin: 0;
+  right: 0px;
+  padding: 0;
+  width: 200px;
+  background-color: #c79060;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* .cart-img {
+  right: 0px;
+  position: fixed;
+} */

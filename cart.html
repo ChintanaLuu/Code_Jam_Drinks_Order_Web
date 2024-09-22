@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cart</title>
+                <!--CSS-->
+        <link rel="stylesheet" href="background_styles.css">
+        <link rel="stylesheet" href="styles.css">
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    
+    <body class="background-container">
+
+        <div class="left-blue-background"></div>
+
+        <div class="center-background">
+            <h1>View Cart Items:</h1>
+            <div class ="cart-grid-container" id="cartDisplaygrr">
+                <!-- <div class="card-body">
+                    <h1>View Items In Cart</h1>
+                    <p id="cartItemNumber"></p>
+                    <p>$${drink.price}</p> // This drink still needs a price by ingredients! Also needs calculate total price.
+                    <button class="btn btn-white" onclick="increaseDrinkBy1(${drink.ID})">+</button>
+                    <button class="btn btn-white" onclick="decreaseDrinkBy1(${drink.ID})">-</button>
+                </div>
+            </div> -->
+        </div>
+
+            
+        <script> // Async not necessary.
+
+            // Get drinkID from previous button press on 'main.html' page.
+            let params =  new URL(document.location.toString()).searchParams
+            const API_URL= "https://api.spoonacular.com/recipes/complexSearch?recipeBoxID=${params.get('id')}&apiKey=HIDDEN_API_KEY&type=Drink";  // query needs fixing.
+            
+            
+            // setTimeout(()=>{
+
+
+            const totalPrice = 0;
+            const itemsInCart = 0;
+
+            fetch(API_URL)
+            .then(res => {
+                if (!res.ok) {
+                throw new Error('Network response was not ok'); // Fetch returns nothing due to no wifi connection
+                }
+                return res.json(); // returns entire OK response converted to json. no network error.
+            })
+            //
+            .then(data => {
+                const results = data.results; // Access 'results' array from returned API data.
+                
+                
+                results.forEach(drink => {
+                        // itemsInCart += 1;
+                        // document.getElementByID("cartItemNumber").textContent(${itemsInCart}); // Syntax erorr: mssing ) after arg list.
+                        // totalPrice += ${drink.price}; // need another query for that!
+
+                        const cartDrinksHTML = `
+                        <div class="col-auto">
+                        <div class="card text-white bg-light"
+                        <div class="card-body">
+                            <img class="card-img-top" src="${drink.image}" alt="${drink.title}" />
+                            <h5 class="card-title">${drink.title}</h2>
+                            <p>his drink still needs a price by ingredients!</p>
+                            <a href="cart.html" onclick="removeFromCart(${drink.ID})" class="btn btn-img-primary"Remove from cart</a>
+                            <button class="btn btn-white" onclick="increaseDrinkBy1(${drink.ID})">+</button>
+                            <button class="btn btn-white" onclick="decreaseDrinkBy1(${drink.ID})">-</button>
+                            </div>
+                            </div>
+                            `;
+                            document.querySelector('#cartDisplaygrr').insertAdjacentHTML('beforeend', cartDrinksHTML);
+                    });
+                    })
+                .catch(error => {
+                  console.error('Error:', error);
+                });
+
+            // },10)
+
+            // addToCart();
+
+            // Render image for each drink in cart.
+            // functionRes.foreach(drink =>);
+        </script>
+
+        <div class="right-blue-background">
+            <!-- Display nav bar -->
+            <div class="cart-total-bar">
+                <img src="trolley.png" height="100px" weight="100px"></img>
+                <p>Cart Total: ${totalPrice}</p> 
+                <button>
+                    <a href="#" button class="btn btn-green">Checkout</a>
+                </button>
+            </div>
+        </div>
+
+    </body>
+
+</html>

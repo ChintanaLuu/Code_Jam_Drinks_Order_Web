@@ -8,18 +8,24 @@
         <link rel="stylesheet" href="styles.css">
       </head>
 
+      <!-- Import Functions -->
+       <!-- <href="myFunctions.js"></href> -->
+
       <body class="background-container">
         <!-- cafe bg -->
       <div class="left-background"></div>
 
 
-<!-- Pink -->
+      
+      <!-- Pink -->
       <div class="center-background">
+
         <div class="col-center">
           <h1>Drinks:</h1>
           <p>Attributions:</p>
           <a href="https://www.flaticon.com/free-icons/shopping-cart" title="shopping cart icons">Shopping cart icons created by Freepik - Flaticon</a>
           <p>Side images by Freepik.</p>
+          <a href="https://www.flaticon.com/free-icons/question" title="question icons">Question icons created by Roundicons - Flaticon</a>
         </div>
         
         <!-- Grid container containing drinkHTML cells. -->
@@ -27,6 +33,10 @@
         </div>
         
         <script type="module">
+
+        // Function for adding item to cart.
+        // import addToCart from "myFunctions.js";
+
           
           // Hide API key in environment.
           // import 'dotenv/config'
@@ -35,6 +45,8 @@
           
           
           // const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
+
+          // Get drink RECIPES.
           fetch(API_URL)
           .then(res => {
             if (!res.ok) {
@@ -42,11 +54,18 @@
             }
             return res.json(); // returns entire OK response converted to json. no network error.
           })
+          
+          // GET
+
+
           //
           .then(data => {
-            const results = data.results; // Access 'results' array from returned API data.
+            //console.log(data);
             
+            const results = data.results; // Access 'results' array from returned API data.
             results.forEach(drink => {
+              
+              
               const drinkHTML = `
               <div class="col-auto">
                 <div class="card text-white bg-light"
@@ -54,8 +73,19 @@
                   <img class="card-img-top" src="${drink.image}" alt="${drink.title}" />
                   <h5 class="card-title">${drink.title}</h2>
                     <p> ${drink.taste}</p> // This drink still needs a description!
-                    <a href="#" class="btn img src="trolley.png">Add to Cart!</a>
-                    <a href="#" class="btn btn-primary">View Nutrition Information!</a>
+
+                    <button>
+                      <a href="cart.html?id=${drink.id}" onclick="addToCart(${drink.id})" alt="Add to cart!">
+                        <input type="image" src= "trolley.png" height="30px" width="30px">
+                      </a>
+                    </button>
+
+                    <button>
+                    <a href="#" class="btn btn-primary" alt="View Nutrition Information!">
+                      <input type="image" src= "question.png" height="30px" width="30px">
+                    </a>
+                    </button>
+
                     </div>
                     </div>
                     `;
@@ -64,8 +94,11 @@
                 })
                 .catch(error => {
                   console.error('Error:', error);
-            });
-            </script>
+                });
+
+
+                
+                </script>
 </div>
 <!-- cafe bg -->
 <div class="right-background"></div>
