@@ -62,7 +62,10 @@
 }
 
 .card-title {
+  /* Add center positioning to title */
+  /* ------------ */
   font-size: 1.25rem;
+  color: rgba(0, 0, 0, 1);
   margin-bottom: 0.5rem;
 }
 
@@ -99,7 +102,9 @@
   overflow: auto;
 }
 
-/* .cart-img {
+.cart-img {
   right: 0px;
+  /* transform(right, );  */
+  /* Move */
   position: fixed;
-} */
+}

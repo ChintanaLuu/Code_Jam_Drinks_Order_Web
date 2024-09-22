@@ -17,14 +17,6 @@
         <div class="center-background">
             <h1>View Cart Items:</h1>
             <div class ="cart-grid-container" id="cartDisplaygrr">
-                <!-- <div class="card-body">
-                    <h1>View Items In Cart</h1>
-                    <p id="cartItemNumber"></p>
-                    <p>$${drink.price}</p> // This drink still needs a price by ingredients! Also needs calculate total price.
-                    <button class="btn btn-white" onclick="increaseDrinkBy1(${drink.ID})">+</button>
-                    <button class="btn btn-white" onclick="decreaseDrinkBy1(${drink.ID})">-</button>
-                </div>
-            </div> -->
         </div>
 
             
@@ -32,7 +24,7 @@
 
             // Get drinkID from previous button press on 'main.html' page.
             let params =  new URL(document.location.toString()).searchParams
-            const API_URL= "https://api.spoonacular.com/recipes/complexSearch?recipeBoxID=${params.get('id')}&apiKey=HIDDEN_API_KEY&type=Drink";  // query needs fixing.
+            const API_URL= "https://api.spoonacular.com/recipes/complexSearch?recipeBoxID=${params.get('id')}&apiKey=eb02b9f4564547709316d45bbd4bc718&type=Drink";  // query needs fixing.
             
             
             // setTimeout(()=>{
@@ -64,7 +56,7 @@
                         <div class="card-body">
                             <img class="card-img-top" src="${drink.image}" alt="${drink.title}" />
                             <h5 class="card-title">${drink.title}</h2>
-                            <p>his drink still needs a price by ingredients!</p>
+                            <p style="color:black">his drink still needs a price by ingredients!</p>
                             <a href="cart.html" onclick="removeFromCart(${drink.ID})" class="btn btn-img-primary"Remove from cart</a>
                             <button class="btn btn-white" onclick="increaseDrinkBy1(${drink.ID})">+</button>
                             <button class="btn btn-white" onclick="decreaseDrinkBy1(${drink.ID})">-</button>
@@ -92,7 +84,7 @@
                 <img src="trolley.png" height="100px" weight="100px"></img>
                 <p>Cart Total: ${totalPrice}</p> 
                 <button>
-                    <a href="#" button class="btn btn-green">Checkout</a>
+                    <a href="checkout.html" button class="btn btn-green">Checkout</a>
                 </button>
             </div>
         </div>
