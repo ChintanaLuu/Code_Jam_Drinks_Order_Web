@@ -1,3 +1,5 @@
+/* Main Page */
+
 .background-container{
   display: grid;
   grid-template-columns: 0.5fr 2fr 0.5fr; /* Create thirds. Left and right cafe background. Center pink.*/
@@ -38,6 +40,10 @@
   row-gap: 0.5rem;
   /* grid-template-areas: "body body" */
 }
+
+
+/* Cart Page */
+
 
 /* Card styles */
 .card {
@@ -107,4 +113,10 @@
   /* transform(right, );  */
   /* Move */
   position: fixed;
+}
+
+/* Checkout Page */
+.happy-cat-animation{
+  left: 0px;
+  background: url(cute-and-funny-little-cat-cartoon-illustration-vector.jpg);
 }
