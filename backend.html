@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>roar!!!</title>
+    </head>
+    <body>
+        <script data-main="js/config.js" src="js/require.js"></script> 
+        <script>
+        alert("before require keyword");
+        require(['config'], function(){
+            alert("after require keyword");
+        });
+        </script>
+    </body>
+</html>

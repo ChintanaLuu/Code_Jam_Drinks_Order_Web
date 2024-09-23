@@ -20,16 +20,13 @@
         </div>
 
             
-        <script> // Async not necessary.
+        <script>
 
             // Get drinkID from previous button press on 'main.html' page.
             let params =  new URL(document.location.toString()).searchParams
             const API_URL= "https://api.spoonacular.com/recipes/complexSearch?recipeBoxID=${params.get('id')}&apiKey=eb02b9f4564547709316d45bbd4bc718&type=Drink";  // query needs fixing.
             
             
-            // setTimeout(()=>{
-
-
             const totalPrice = 0;
             const itemsInCart = 0;
 
@@ -70,12 +67,11 @@
                   console.error('Error:', error);
                 });
 
-            // },10)
-
             // addToCart();
+            // // Render image for each drink in cart.
+            // functionRes.foreach(drink =>)({});
 
-            // Render image for each drink in cart.
-            // functionRes.foreach(drink =>);
+
         </script>
 
         <div class="right-blue-background">
