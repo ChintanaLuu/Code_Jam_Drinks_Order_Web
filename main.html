@@ -12,12 +12,11 @@
         </script>
       </head>
 
-      <body class="background-container" onload="addToCart()">
-        <!-- cafe bg -->
-      <div class="left-background"></div>
+      <body class="background-container">
+        
+        <!-- plain bg colour -->
+      <div class="left-blue-background"></div>
 
-      
-      <!-- Pink -->
       <div class="center-background">
         
         <script type="module" src="api.js">
@@ -29,38 +28,46 @@
               <p>Sorry, there has been an error with retrieving API data.</p>
 
             }
-            
-            </script>
+    
+        </script>
     
 
-<div class="grid-container" id="cell">
+<!-- <div class="grid-container" id="cell"> -->
   
   <div class="row-auto">
     <div class="col-auto">
+      
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="${drink.image}" alt="${drink.title}">
         <div class="card-body">
           <h5 class="card-title">${drink.title}</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <p id="BMTL!!!">default text</p>
-            <button type="button" id="AB" class="btn btn-primary" alt="Add item to cart.">Add to cart</button>
+          <!--add ${drink.id} to function param later-->
+            <button type="button" onclick="addToCart()" class="btn btn-primary" alt="Add item to cart.">Add to cart</button>
+            <a href="#">
+              <button type="button" class="btn btn-info">About</button>
+            </href>
           </div>
         </div>
+        
       </div>
 
-</div>
+<!-- </div> -->
 
 
 <!-- cafe bg -->
-<div class="right-background"></div>
-
-<footer>
-  <div class="col-center">
-    <p>Attributions:</p>
-    <a href="https://www.flaticon.com/free-icons/shopping-cart" title="shopping cart icons">Shopping cart icons created by Freepik - Flaticon</a>
-    <a href="https://www.flaticon.com/free-icons/question" title="question icons">Question icons created by Roundicons - Flaticon</a>
-  </div>
-</footer>
-
+<div class="right-blue-background"></div>
 </body>   
+
+<div class="row">
+  <footer>
+    <div class="col-center">
+      <p>Attributions:</p>
+      <a href="https://www.flaticon.com/free-icons/shopping-cart" title="shopping cart icons">Shopping cart icons created by Freepik - Flaticon</a>
+      <a href="https://www.flaticon.com/free-icons/question" title="question icons">Question icons created by Roundicons - Flaticon</a>
+    </div>
+  </footer>
+</div>
+
 </html>

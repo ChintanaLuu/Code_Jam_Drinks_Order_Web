@@ -1,31 +1,37 @@
-function addToCart(){
-    
+const drinks = []; // array to store drink ids.
 
-document.getElementById("BMTL!!!").innerHTML = "UPDATE LE HTML!";
-console.log("hello! function called!");
+function addToCart(drinkID){
+    
+document.getElementById("BMTL!!!").innerHTML = "Item added to cart!";
+
+drinks.add(drinkID);
+console.log(drinks); // print array
 
 }
 
+var totalPrice = 0;
+
+function updateCartDisplay(){
+
+let drinksLen = drinks.length;
+let bs_card = "";
+
+for(let i=0; i < drinksLen; i++){
+    const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink" //add drinkID
+    fetch(API_URL)
+            
+    bs_card += '<div class="card" style="width: 18rem;"><img class="card-img-top" src="${drink.image}" alt="${drink.title}"><div class="card-body"><h5 class="card-title">${drink.title}</h5><p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p><button type="button" onclick="removeFromCart()" class="btn btn-danger" alt="Add item to cart.">Remove from cart</button></div>'
+    //var totalPrice += $({drink.cost});
+}
+}
+    
+        
+//         // Cart limit is 10 drinks.
+//         // Get all add to cart buttons on main html page.
+    
 
 //     // Request drinkID from URL.
     
-//     const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink" //add drinkID
-//     fetch(API_URL, drinkID);
-    
-//     //var totalPrice += $({drink.cost});
-//     // Cart limit is 10 drinks.
-//     // Get all add to cart buttons on main html page.
-
-//     var addCartItemButtons = document.getElementsById('AB')
-
-
-//     for (var i=0; i < addCartItemButtons.length; i++){
-
-//         var button = addCartItemButtons[i]
-//         button.addEventListener('click', function(event)){
-//         }
-//         updateCartTotal()
-//     }
 
 // function updateCartTotal(){
 
