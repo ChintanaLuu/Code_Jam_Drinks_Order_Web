@@ -1,7 +1,11 @@
 function addToCart(){
     
 
+document.getElementById("BMTL!!!").innerHTML = "UPDATE LE HTML!";
 console.log("hello! function called!");
+
+}
+
 
 //     // Request drinkID from URL.
     
@@ -27,7 +31,6 @@ console.log("hello! function called!");
 
     
 
-}
     
 //     fetch(API_URL)
 //     .then(res => {
