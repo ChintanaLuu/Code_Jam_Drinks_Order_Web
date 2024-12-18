@@ -1,7 +1,6 @@
-function addToCart(drinkID){
+
     // Request drinkID from URL.
 
-    //var drinkID = Request.QueryString["id"];
     
     const addedDrinkData = drinkID;
 
