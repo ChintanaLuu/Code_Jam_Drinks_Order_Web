@@ -49,7 +49,7 @@ function addToCart(drinkID){
     
     // GETS drink information.
 
-    const API_URL = `https://api.spoonacular.com/recipes/${drinkID}/information?apiKey=`;
+    const API_URL = `https://api.spoonacular.com/recipes/${drinkID}/information?apiKey=eb02b9f4564547709316d45bbd4bc718`;
     
     fetch(API_URL)
     .then(res => {
@@ -64,7 +64,7 @@ function addToCart(drinkID){
         //console.log(data);        
         drinks.push(data);
 
-        console.log(window.localStorage = drinks);
+        console.log("i walk a lonely road, the only one that i have ever known", window.localStorage = drinks);
         
         // cannot set properties of null because it isnt going to cart page now.
         //document.getElementById("cartStatusID").innerHTML = "An item is in the cart.";

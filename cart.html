@@ -11,48 +11,33 @@
         <script src="CartManager.js"></script>
     </head>
     
-    <body class="background-container">
+    <body> 
 
-        <div class="left-blue-background"></div>
 
-        <div class="center-background">
-            <h1>View Cart Items:</h1>
-        </div>
-        
+    <div class="center-background">
+        <h1>View Cart Items:</h1>
     </div>
-
-
     
-    <div class ="cart-grid-container" id="cartDisplaygrr" onload="loadCart()">
+    <div class ="row cart-grid-container" id="cartDisplaygrr" onload="loadCart()">
         
-        
-        <!--Place before the script so it exists to be updated.-->
         <div class="row">
             <p id="cartStatusID">Cart is empty right now. Default text.</p>
+            <p id="cart-inv-dis">hi!! it's the cart!</p>
         </div>
         
-        <!--add this to see what is in the cart-->
-        
-        <div class="row">
-            
-            <p id="cart-inv-dis">hi!! it's the cart!</p>
-
+        <!-- Display nav bar -->
+        <!-- I use col instead of row to make it the full height of 100% as spef in the CSS!-->
+        <div class="col-3 cart-total-bar">
+            <img src="trolley.png" height="100px" weight="100px"></img>
+                <p id="tpb">Total: <b>${totalPrice}</b></p> 
+                <a href="checkout.html">
+                    <button type="button" class="btn btn-green">Checkout</button>
+                </a>
         </div>
 
     </div>
         
         
-        <div class="right-blue-background">
-            <!-- Display nav bar -->
-            <div class="cart-total-bar">
-                <img src="trolley.png" height="100px" weight="100px"></img>
-                    <p id="tpb">Cart Total: ${totalPrice}</p> 
-
-                    <a href="checkout.html">
-                        <button type="button" class="btn btn-green">Checkout</button>
-                    </a>
-            </div>
-        </div>
 
     </body>
 

@@ -18,10 +18,6 @@
   background-color: #85CCF0;
 }
 
-.center-background{
-  background-color: #ffd0e3;
-}
-
 /* Main Display Grid - need fix this and use bootstrap instead?? */
 .grid-container{
   display: grid;
@@ -59,7 +55,7 @@
 
 /* Card styles */
 
-.card:hover {
+.bs-card-hv:hover {
   transform: scale(1.05); /* Zoom in on hover */
   /*add more information text when hovered over.....*/
 }
@@ -70,30 +66,44 @@
   padding: 0px 10px;
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size)
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
-} */
+}
+
+/* cart page header */
+.center-background{
+  text-align: center;
+  height: 10%;
+  width: 100%;
+  position: fixed;
+  background-color: #ffd0e3;
+}
 
 /* Cart Display Grid */
 .cart-grid-container {
   display: grid;
   grid-template-rows: auto;
-  width: 500px;
+  width: 80%;
+  height: 90%;
+  bottom: 0px;
+  position: fixed;
   /* width: 100%; */
-  height: 20px;
+  background-color: #85CCF0;
 }
 
 /* Display bar 0px from right of screen. */
 .cart-total-bar {
   margin: 0;
   right: 0px;
-  padding: 0;
-  width: 200px;
+  bottom: 0px;
+  height: 90%;
+  text-align: center;
+  padding: 20px;
+  width: 25%;
   background-color: #c79060;
   position: fixed;
-  height: 100%;
   overflow: auto;
 }
 
@@ -106,6 +116,7 @@
 
 /* Checkout Page */
 .happy-cat-animation{
+
   left: 0px;
   //transform: scale
   background: url(cute-and-funny-little-cat-cartoon-illustration-vector.jpg);
