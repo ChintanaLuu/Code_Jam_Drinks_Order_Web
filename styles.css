@@ -28,24 +28,23 @@
   /* grid-template-areas: "body body" */
 }
 
-// Title size constraint
+/* Title size constraint */
 .card-title-box {
   word-wrap: break-word;
   width: 20px00px;
   height:200px;
 }
 
-// Footer
 
 .main-footer {
-
+  text-align: center;
   margin: 0;
-  right: 0px;
-  padding: 0;
+  padding: 20px;
+  height: 30%;
   width: 100%;
-  background-color: #c79060;
+  bottom: 0px;
   position: fixed;
-  height: 20%;
+  background-color: #c79060;
   overflow: auto;
 
 }
@@ -80,6 +79,17 @@
   position: fixed;
   background-color: #ffd0e3;
 }
+
+.center-body{
+
+  text-align: center;
+  background-color: #85CCF0;
+  bottom: 20%;
+  width: 100%;
+  height:70%;
+  position: fixed;
+}
+
 
 /* Cart Display Grid */
 .cart-grid-container {
