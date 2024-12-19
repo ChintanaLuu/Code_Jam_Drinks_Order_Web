@@ -8,15 +8,6 @@
   
 }
 
-/* Cafe background */
-.left-background{
-  background: url('cozy-autumn-cafe-illustration_23-2149076539.jpg') no-repeat center center / cover; /* Image is not repeated and is centered to cover whole left-background container.*/
-}
-
-.right-background{
-  background: url('cozy-autumn-cafe-illustration_23-2149076539.jpg') no-repeat center center / cover; /* Image is not repeated and is centered to cover whole left-background container.*/
-}
-
 /* Blue background */
 
 .left-blue-background{
@@ -31,7 +22,7 @@
   background-color: #ffd0e3;
 }
 
-/* Main Display Grid */
+/* Main Display Grid - need fix this and use bootstrap instead?? */
 .grid-container{
   display: grid;
   grid-template-columns: repeat(4, 0.5fr); /* Determine size of image.*/
@@ -41,15 +32,36 @@
   /* grid-template-areas: "body body" */
 }
 
+// Title size constraint
+.card-title-box {
+  word-wrap: break-word;
+  width: 20px00px;
+  height:200px;
+}
+
+// Footer
+
+.main-footer {
+
+  margin: 0;
+  right: 0px;
+  padding: 0;
+  width: 100%;
+  background-color: #c79060;
+  position: fixed;
+  height: 20%;
+  overflow: auto;
+
+}
+
 
 /* Cart Page */
-
 
 /* Card styles */
 
 .card:hover {
   transform: scale(1.05); /* Zoom in on hover */
-  /*add more text when hovered over.....*/
+  /*add more information text when hovered over.....*/
 }
 
 /* Style page content */
@@ -58,11 +70,11 @@
   padding: 0px 10px;
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size)
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
-}
+} */
 
 /* Cart Display Grid */
 .cart-grid-container {
@@ -95,5 +107,6 @@
 /* Checkout Page */
 .happy-cat-animation{
   left: 0px;
+  //transform: scale
   background: url(cute-and-funny-little-cat-cartoon-illustration-vector.jpg);
 }

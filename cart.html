@@ -21,32 +21,50 @@
         
         <div class ="cart-grid-container" id="cartDisplaygrr">
             
+            
             <!--Place before the script so it exists to be updated.-->
             <div class="row">
                 <p id="cartStatusID">Cart is empty right now. Default text.</p>
             </div>
+            
+            <!--add this to see what is in the cart-->
+            
+            <div class="row">
+                
+                <p id="cart-inv-dis">hi!! it's the cart!</p>
+                
+                <script>    
+                    var testdefineditem = {id: 756814};
+                    let rr = {testdefineditem}
+                    addToCart(rr);                    
+                </script>
 
-            <script>
+                <!-- <div class="col-auto">
+                    <div class="card text-white bg-light">
+                    <div class="card-body">
+                        <img class="card-img-top" src="" width="100px" height="100px" alt="${drink.title}" />
+                        <h5 class="card-title">${drink.title}</h2>
+                        <p style="color:black">This drink still needs a price by ingredients!</p>
+                        <button class="btn btn-info">+</button>
+                        <button class="btn btn-warning">-</button>
+                    </div>
+                    </div>
+                </div> -->
                 
-                var testdefineditem = {id: 756814};
-                let rr = {testdefineditem}
-                addToCart(rr);
-                
-            </script>
+            </div>
             
                 <!-- <div class="alert" dismiss></div> -->
-        </div>
         
-
         
         <div class="right-blue-background">
             <!-- Display nav bar -->
             <div class="cart-total-bar">
                 <img src="trolley.png" height="100px" weight="100px"></img>
-                <p>Cart Total: ${totalPrice}</p> 
-                <button>
-                    <a href="checkout.html" button class="btn btn-green">Checkout</a>
-                </button>
+                    <p id="tpb">Cart Total: ${totalPrice}</p> 
+
+                    <a href="checkout.html">
+                        <button type="button" class="btn btn-green">Checkout</button>
+                    </a>
             </div>
         </div>
 

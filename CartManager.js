@@ -1,53 +1,62 @@
-let drinks = {}; // store drinks.
+let drinks = []; // array store drinks.
 
 var itemsInCart = 0;
 var totalPrice = 0;
 
 let results = {};
 
+let bs_card = "";
+
+// need to create a manager so functions dont need to call other ones...
+
 function updateCartDisplay(){
     
-    let drinksLen = drinks.length;
-    let bs_card = "";
-    
 
+    console.log('drink array length:', drinks.length); // num of drink items in there... index starts from 0
 
-    for(let i=0; i < drinksLen; i++){
+    // let is an array.
+    for(let i=0; i < drinks.length; i++){
 
+        // DONT USE API! FETCH THE DATA FROM A DICT/ARRAY INSTEAD! i may change the data to store the results in a dict so only one API call is needed for the entirety.
 
-     
-        //const API_URL= "https://api.spoonacular.com/recipes/complexSearch?recipeBoxID=${params.get('id')}&apiKey=&type=Drink";  
+        //${params.get('id')}. i need to get drinkID on button click.
+        // I NEED TO GET MAIN TO PASS ID TO QS SO I CAN GET IT FOR MY CART!           
+        //const API_URL= "https://api.spoonacular.com/recipes/complexSearch?recipeBoxID=${params.get('id')}&apiKey=&type=Drink";  // query needs fixing and hiding the API key.
         
         //price by ID:
         //const API_price = "https://api.spoonacular.com/recipes/{id}/priceBreakdownWidget.json";
 
-        fetch(API_URL) // API_url NOT DEFINED!!!
+        fetch(API_URL)
         .then(res => {
-            if (!res.ok) {
+
+            if(res == 402){
+                throw new Error("Sorry! Today's API has reached its point limit. Come back tomorrow to check on the website!"); 
+            }
+            
+            else if (!res.ok) {
             throw new Error('Network response was not ok');
             // need to add a check for error type..
             }
             return res.json();
         })
-        //
+        
         .then(data => {
             results = data.results; // Access 'results' array from returned API data.
             
-
             results.forEach(drink => {
-                    itemsInCart += 1; // Assignment to const variable error.
+                    //itemsInCart += 1; // Assignment to const variable error.
 
-                    document.getElementByID("cartItemNumber").textContent(itemsInCart);
+                    //document.getElementByID("cartItemNumber").textContent(itemsInCart);
                     //totalPrice += ${drink.price}; // need another query for that!
 
                     bs_card += `
                             <div class="col-auto">
-                            <div class="card text-white bg-light"
+                            <div class="card text-white bg-light">
                             <div class="card-body">
                                 <img class="card-img-top" src="${drink.image}" alt="${drink.title}" />
                                 <h5 class="card-title">${drink.title}</h2>
                                 <p style="color:black">his drink still needs a price by ingredients!</p>
-                                <a href="cart.html" onclick="removeFromCart(${drink.ID})" class="btn btn-img-primary"Remove from cart</a>
+                                <a href="cart.html" onclick="removeFromCart(${drink.ID})" class="btn btn-img-primary"Remove from cart</href>
                                 <button class="btn btn-white" onclick="increaseDrinkBy1(${drink.ID})">+</button>
                                 <button class="btn btn-white" onclick="decreaseDrinkBy1(${drink.ID})">-</button>
                                 </div>
@@ -65,6 +74,12 @@ function updateCartDisplay(){
 }
 }
 
+// function updateTotalPrice(){
+
+//     document.getElementById("tbp").innerHTML = "Total ${totalPrice}";
+
+// }
+
 
 function addToCart(drinkID){
     
@@ -77,31 +92,49 @@ function addToCart(drinkID){
         if (!res.ok) {
         throw new Error('Network response was not ok');
         }
-        return res.json();
+        return res.json(); // Can i store it somewhere??
     })
 
     .then(data => {
-        // ass to const var
-        results = data.results; // Access 'results' array from returned API data.
+        
+        console.log(data);
+        
+        // results = data.results; // THIS IS UNDEFINED!!
+        //console.log('yarr:', results);
 
-        drinks.push(drink); // drink is not defined...
+        drinks.push(data);
 
-        // only adds one drink at a time!!
-        // results.forEach(drink =>{ // cannot read for does not exist
+        document.getElementById("cartStatusID").innerHTML = "An item is in the cart.";
+        document.getElementById("cart-inv-dis").innerHTML = data.title; 
+        // title is null/undefined.... grrr
+        console.log('Drinks:', data.id, data.title, data.image); // "drinks.title undefined". // only works if using "data" directly..
+
+        drinks.forEach(drink => {
+            //itemsInCart += 1; // Assignment to const variable error.
+
+            //document.getElementByID("cartItemNumber").textContent(itemsInCart);
+            //totalPrice += ${drink.price}; // need another query for that!
+
+            bs_card += `
+                    <div class="col-auto">
+                    <div class="card text-white bg-light">
+                    <div class="card-body">
+                        <img class="card-img-top" src="${data.image}" alt="${drink.title}" />
+                        <h5 class="card-title">${data.title}</h2>
+                        <p style="color:black">This drink still needs a price by ingredients!</p>
+                        <a href="cart.html" class="btn btn-img-primary"Remove from cart</href>
+                        <button class="btn btn-white" onclick="increaseDrinkBy1(${drink.ID})">+</button>
+                        <button class="btn btn-white" onclick="decreaseDrinkBy1(${drink.ID})">-</button>
+                        </div>
+                        </div>
+                        `
+
+                document.querySelector('#cartDisplaygrr').insertAdjacentHTML('beforeend', bs_card);
+        });       
         })
+    
 
-    // need to get results where drinkID
-    // results.get(drinkID) -- from main.html/api.js
-    
-    document.getElementById("cartStatusID").innerHTML = "An item is in the cart.";
-    console.log('Drinks:', drinks.title); // print dict
-
-    updateCartDisplay();
-    
-    // user should not be able to add more UNIQUE drinks to cart than drinks displayed! (11 rn (indexing from 0))
-    
-        // Array(10)
-        // 0
-        // : 
-        // {id: 756814, title: 'Powerhouse Almond Matcha Superfood Smoothie', image: 'https://img.spoonacular.com/recipes/756814-312x231.jpg', imageType: 'jpg'}
+    //console.log(updateCartDisplay()); // undefined error...
+    //console.log("update called!");
+    //updateTotalPrice();
 }

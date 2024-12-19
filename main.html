@@ -44,18 +44,22 @@
     .then(data => {
       console.log(data);
       
-
+      // I store the results in here... however, it's a const...???
       const results = data.results; // Access 'results' array from returned API data.
       results.forEach(drink => {
         
+      
+        // The cards need padding.
         //need to update grid look later... and also remove cart button href.
         const drinkHTML = `
-        <div class="col lg-3 md-2 sm-1">
+        <div class="col">
           <div class="card text-black bg-light" style="width: 18 rem;">
           <div class="card-body">
-            <img class="card-img-top" src="${drink.image}" alt="${drink.title} height="50px" width="50px" />
-            <h5 class="card-title">${drink.title}</h2>
-              
+
+            <img class="card-img-top" src="${drink.image}" alt="${drink.title} height="100px" width="100px" />
+            
+            <h5 class="card-title-box">${drink.title}</h2>
+    
             <a href="Cart.html?${drink.ID}">
               <button type="button" onclick="addToCart(${drink.ID})" class="btn btn-primary" alt="Add item to cart.">Add to cart</button>
             
@@ -74,30 +78,6 @@
           </script>
 
 
-<!-- </div>
-  
-  <div class="row-auto">
-    <div class="col-auto">
-      
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="${drink.image}" alt="${drink.title}">
-        <div class="card-body">
-          <h5 class="card-title">${drink.title}</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <p id="BMTL!!!">default text</p>
-          //add ${drink.id} to function param later
-            <button type="button" onclick="addToCart()" class="btn btn-primary" alt="Add item to cart.">Add to cart</button>
-            <a href="#">
-              <button type="button" class="btn btn-info">About</button>
-            </href>
-          </div>
-        </div>
-        
-      </div> -->
-
-
-
-<!-- cafe bg -->
 <div class="right-blue-background"></div>
 </body>   
 
