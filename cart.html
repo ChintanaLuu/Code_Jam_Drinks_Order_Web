@@ -4,29 +4,30 @@
         <meta charset="UTF-8">
         <title>Cart</title>
                 <!--CSS-->
-        <link rel="stylesheet" href="background_styles.css">
+        <!-- <link rel="stylesheet" href="background_styles.css"> -->
         <link rel="stylesheet" href="styles.css">
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="CartManager.js"></script>
     </head>
     
-    <body> 
 
+    <!-- need add page scroll-->
+    <!-- Onload on body -->
+    <body onload="loadCart()"> 
 
     <div class="center-background">
         <h1>View Cart Items:</h1>
     </div>
-    
-    <div class ="row cart-grid-container" id="cartDisplaygrr" onload="loadCart()">
-        
+
+    <div class ="row cart-grid-container" id="cartDisplaygrr">
+
         <div class="row">
             <p id="cartStatusID">Cart is empty right now. Default text.</p>
             <p id="cart-inv-dis">hi!! it's the cart!</p>
         </div>
         
-        <!-- Display nav bar -->
-        <!-- I use col instead of row to make it the full height of 100% as spef in the CSS!-->
+        <!-- Display nav bar. Total price does not exist yet... -->
         <div class="col-3 cart-total-bar">
             <img src="trolley.png" height="100px" weight="100px"></img>
                 <p id="tpb">Total: <b>${totalPrice}</b></p> 

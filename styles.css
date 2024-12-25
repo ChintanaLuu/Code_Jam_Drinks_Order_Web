@@ -25,6 +25,8 @@
   grid-auto-rows: minimax(1fr, auto);
   column-gap: 1rem;
   row-gap: 0.5rem;
+  //height: 50%;
+  //width: 50;
   /* grid-template-areas: "body body" */
 }
 
@@ -40,7 +42,7 @@
   text-align: center;
   margin: 0;
   padding: 20px;
-  height: 30%;
+  height: 10%;
   width: 100%;
   bottom: 0px;
   position: fixed;
