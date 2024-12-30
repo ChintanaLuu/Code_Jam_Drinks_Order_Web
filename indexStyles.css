@@ -1,0 +1,18 @@
+/* Running it in live view makes the colors darker for some reason.... */
+
+
+.header{
+  text-align: center;
+  height: 10%;
+  width: 100%;
+  background-color: #a7ca56;
+}
+
+.cards-wrapper{
+  margin-bottom: 1rem; /* Adds spacing between rows */
+}
+
+.page-footer{
+      text-align: center;
+      background-color: #a7ca56;
+}

@@ -12,39 +12,7 @@ let bs_card = "";
     
 // }
 
-function loadCart(){
-    
-    console.log("CART LOADED!");
-    document.getElementById("cartStatusID").innerHTML = "roar!";
-    
-            // add a drink desc LATER.
-            // needs resizing and price fixing to calculate cost.
-    
-            Object.keys(localStorage).forEach(key =>{
 
-                    const value = JSON.parse(localStorage.getItem(key)); // parse from where it is stored with stringify.
-
-                    //itemsInCart += 1;
-                    //totalPrice += ${drink.price};
-                    bs_card += `
-                    <div class="col-auto">
-                    <div class="card text-black bg-light" style="width: 18rem;">
-                    <div class="card-body">
-                    <img class="card-img-top" src="${value.image}" alt="${value.title}" height="50px" width="50px"/>
-                    <h5 class="card-title">${value.title}</h2>
-                    <p style="color:black">$${value.pricePerServing / value.servings}</p>
-                    <button class="btn btn-white" onclick="#">-</button>
-                    <button class="btn btn-white" onclick="#">+</button>
-                    </div>
-                    </div>
-                    `
-            });
-            
-            // can only call this when on the cart page:
-            document.querySelector('#cartDisplaygrr').insertAdjacentHTML('beforeend', bs_card);    
-                
-            };       
-                
 function addToCart(drinkID){
     
     // GETS drink information.
@@ -69,4 +37,56 @@ function addToCart(drinkID){
 
         //console.log('drinkstringify', localStorage);
 
-    })}
+    })
+}
+
+function loadCart(){
+    
+    document.getElementById("cartStatusID").innerHTML = "Press 'Checkout' button to submit order!";
+    
+            // add a drink desc LATER.
+            // needs resizing and price fixing to calculate cost.
+    
+            Object.keys(localStorage).forEach(key =>{
+
+                    const value = JSON.parse(localStorage.getItem(key)); // parse from where it is stored with stringify.
+
+                    var amount = 1;
+                    var drinkPrice = value.pricePerServing / value.servings
+                    //itemsInCart += 1;
+                    //totalPrice += ${drink.price};
+                    bs_card += `
+                    <div class="col-auto" id="${value.id}">
+                    <div class="card text-black bg-light">
+                    <div class="card-body">
+                    <img class="card-img-top" src="${value.image}" alt="${value.title}" height="100px" width="100px"/>
+                    <h5 class="card-title">${value.title}</h2>
+                    <p style="color:black">$${drinkPrice}</p>
+                    <p>Amount: ${amount}</p>
+                    <button type="button" class="btn btn-danger" onclick="increaseAmount(amount, drinkPrice)" alt="Increase drink amount.">-</button>
+                    <button type="button" class="btn btn-info" onclick="decreaseAmount()">+</button>
+                    </div>
+                    </div>
+                    `
+
+
+            });
+            
+            // can only call this when on the cart page:
+            document.querySelector('#cartDisplaygrr').insertAdjacentHTML('beforeend', bs_card);    
+                
+}       
+                
+function increaseAmount(amount, drinkPrice){
+
+    // get the specific drink html......
+    // value.id
+    amount+= 1;
+    drinkPrice += drinkPrice;
+    //
+    loadCart();
+}
+
+function decreaseAmount(){
+    
+}

@@ -1,0 +1,43 @@
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+/* @media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+} */
+
+/* cart page header */
+.header{
+  text-align: center;
+  height: 10%;
+  width: 100%;
+  position: fixed;
+  background-color: #a7ca56;
+}
+
+/* Cart Display Grid. don't need! */
+/* .cart-grid-container {
+    display: grid;
+    grid-template-rows: repeat(1, 0.5fr;);
+    row-gap: 10px;
+    width: 80%;
+    bottom: 0px;
+    height: 90%;
+    position: fixed;
+    width: 100%;
+    background-color: #85CCF0;
+  } */
+  
+
+  /* Make a separate one for background.. */
+  /* Display bar 0px from right of screen. */
+.cart-total-bar {
+    margin: 0;
+    right: 0px;
+    bottom: 0px;
+    height: 90%;
+    text-align: center;
+    padding: 20px;
+    width: 25%;
+    background-color: #fbac83;
+    position: fixed;
+    overflow: auto;
+  }
