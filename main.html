@@ -59,12 +59,12 @@
         
         .then(data => {
           
-          // need to update cards title.
+          // used h-100 to make all cards same height.
           const results = data.results;
           results.forEach(drink => {
             const drinkHTML = `
-            <div class="col-md-4 col-sm-6">
-              <div class="card text-black bg-light">
+            <div class="col-lg-3 col-md-4 col-sm-6 dflex align-items-stretch">
+              <div class="card h-100 text-black bg-light">
                 <div class="card-body">
                   <img class="card-img-top" src="${drink.image}" alt="${drink.title} height="100px" width="100px"/>
                   <h5 class="card-title">${drink.title}</h5>
