@@ -10,35 +10,62 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="CartManager.js"></script>
     </head>
-    
 
-    <!-- need add page scroll-->
-    <!-- Onload on body -->
-    <body onload="loadCart()"> 
-
-    <div class="header">
-        <h1>View Cart Items:</h1>
-    </div>
-
-        <div class ="row cart-grid-container" id="cartDisplaygrr">
+    <main>
+        <!-- need add page scroll-->
+        <!-- Onload on body -->
+        <body onload="loadCart()"> 
             
-            <div class="row">
-                <p id="cartStatusID">Cart is empty.</p>
-                <!-- <p id="cart-inv-dis">hi!! it's the cart!</p> -->
+            <!-- i used "header" CSS class here!! -->
+            <header class="header bg-#a7ca56 text-white d-flex align-items-center fixed-top">
+
+                <div class="row">
+                    <h1>Cart</h1>
+                </div>
+                <!-- margin-spacing 3 -->
+                <img src="drinkweblogo.png" height="60px" width="60px" alt="Drink website logo" class="ms-3">
+
+                <!-- use a bootstrap nav bar. inline.-->
+                <nav class="navbar navbar-light bg-light">
+                    <a class="navbar-brand" href="main.html">Home</a>
+                    <a class="navbar-brand" href="Cart.html" style="color:blue">Cart</a>
+                    <a class="navbar-brand" href="checkout.html">Checkout</a>
+                    <a class="navbar-brand" href="deliveryStatus.html">Delivery Status</a>
+                </nav>
             </div>
-            
-            <!-- Display nav bar. Total price does not exist yet... -->
-            <div class="col-3 cart-total-bar">
-                <img src="trolley.png" height="100px" width="100px"></img>
-                <!-- Update total price in manager.. -->
-                <p id="tpb">Total: <b>${totalPrice}</b></p> 
-                <a href="checkout.html">
-                    <button type="button" class="btn btn-success">Checkout</button>
-                </a>
-            </div>
-            
+        </header>   
+
+        <!-- cart status -->
+        <div class="row">
+            <p id="cartStatusID">Cart is empty.</p>
+            <!-- <p id="cart-inv-dis">hi!! it's the cart!</p> -->
+        </div>
+        
+        <!-- cart total bar -->
+        <div class="col-3 cart-total-bar">
+            <img src="trolley.png" height="100px" width="100px"></img>
+            <!-- Update total price in manager.. -->
+            <p id="tpb">Total: <b>${totalPrice}</b></p> 
+            <a href="checkout.html">
+                <button type="button" class="btn btn-success">Checkout</button>
+            </a>
+        </div>
+        
+        <!-- Use a container... -->
+        <div class="container cards-wrapper mt-5 pb-5">
+            <div class="row" id="cartDisplaygrr"></div>
         </div>
 
+
+        
     </body>
+</main>
+    
+    <footer class="page-footer dflex align-items-center">
+        <div class="row">
+            <p>Attributions:</p>
+            <a href="https://www.flaticon.com/free-icons/shopping-cart" title="shopping cart icons">Shopping cart icons created by Freepik - Flaticon</a>
+        </div>
+      </footer>
 
 </html>

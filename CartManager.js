@@ -55,17 +55,21 @@ function loadCart(){
                     var drinkPrice = value.pricePerServing / value.servings
                     //itemsInCart += 1;
                     //totalPrice += ${drink.price};
+                    // NEED TO MAKE IT ALIGN LEFT
                     bs_card += `
-                    <div class="col-auto" id="${value.id}">
-                    <div class="card text-black bg-light">
-                    <div class="card-body">
-                    <img class="card-img-top" src="${value.image}" alt="${value.title}" height="100px" width="100px"/>
-                    <h5 class="card-title">${value.title}</h2>
-                    <p style="color:black">$${drinkPrice}</p>
-                    <p>Amount: ${amount}</p>
-                    <button type="button" class="btn btn-danger" onclick="increaseAmount(amount, drinkPrice)" alt="Increase drink amount.">-</button>
-                    <button type="button" class="btn btn-info" onclick="decreaseAmount()">+</button>
-                    </div>
+                    <div class="row">
+                        <div class="col-4" id="${value.id}">
+                            <div class="card h-[calc(100%+1rem)] text-black bg-light">
+                                <div class="card-body">
+                                    <img class="card-img-top" src="${value.image}" alt="${value.title}"/>
+                                    <h5 class="card-title">${value.title}</h2>
+                                    <p style="color:black">$${drinkPrice}</p>
+                                    <p>Amount: ${amount}</p>
+                                    <button type="button" class="btn btn-danger" onclick="increaseAmount(value.id, amount, drinkPrice)" alt="Increase drink amount.">-</button>
+                                    <button type="button" class="btn btn-info" onclick="decreaseAmount(value.id, amount, drinkPrice)">+</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     `
 
