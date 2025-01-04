@@ -66,6 +66,7 @@
         .then(data => {
           
           // used h-100 to make all cards same height.
+          // NEED TO ADJUST ADD TO CART BUTTON TO BE AT SAME Y.POS...
           const results = data.results;
           results.forEach(drink => {
             const drinkHTML = `
@@ -99,8 +100,6 @@
     <p>Drinks ordering website using Spoonacular API.</p>
     <p><b>Created by Chintana Luu</b></p>
     <p>Last Updated: December 2024</p>
-    <!-- <p>Attributions:</p> -->
-    <!-- <a href="https://www.flaticon.com/free-icons/shopping-cart" title="shopping cart icons">Shopping cart icons created by Freepik - Flaticon</a> -->
   </div>
 </footer>
 
