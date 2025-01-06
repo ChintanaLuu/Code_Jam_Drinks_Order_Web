@@ -31,10 +31,10 @@ function addToCart(drinkID){
             value = JSON.parse(localStorage.getItem(key));
             console.log("value", value);
             value.amount += 1;
-            localStorage.setItem(key, JSON.stringify(value)); //
+            localStorage.setItem(key, JSON.stringify(value));
             
-            // update it!
-            console.log("duplicate drink added:", value.amount); // it says undefined..
+            // print amount of duplicate drink
+            console.log(value.title, ":", value.amount);
         }
 
         else{
@@ -42,40 +42,23 @@ function addToCart(drinkID){
             // Init drink with amount and price.
             data.amount = 1;
             data.drinkPrice = data.pricePerServing / data.servings;
-            localStorage.setItem(key, JSON.stringify(data)); // store in JSON
+            localStorage.setItem(key, JSON.stringify(data))
         }
         
         
-        console.log('drinkstringify', localStorage);
+        // console.log('drinkstringify', localStorage); // indexes from 1.
         
     })
 }
 
 
-// // Drink Item Class
 
-// class Drink{
-    
-//     // drinkprice and amount are calculated by me.
-//     // a description could be added in the future.
-//     constructor(id, title, image, drinkPrice, amount){
-    
-//         this.id = id;
-//         this.title = title;
-//         // prev forgot to add below:
-//         this.image = image;
-//         this.drinkPrice = drinkPrice;
-//         this.amount = amount;
-
-//     }
-// }
-
+// needs price fixing to calculate cost.
 
 function loadCart(){
     
     document.getElementById("cartStatusID").innerHTML = "Press 'Checkout' button to submit order!";
     
-    // needs price fixing to calculate cost.
 
         // if(value.id > 1){
         //     value.amount = 1;
@@ -98,8 +81,9 @@ function loadCart(){
                                 <div class="card-body">
                                     <img class="card-img-top" src="${value.image}" alt="${value.title}"/>
                                     <h5 class="card-title">${value.title}</h2>
-                                    <p id="price-${value.drinkPrice}" style="color:black">$${value.drinkPrice}</p>
-                                    <p id="amount-${value.amount}">Amount: ${value.amount}</p>
+                                    <!--Use id for querySelector.-->
+                                    <p id="price-${value.id}" style="color:black">$${value.drinkPrice}</p>
+                                    <p id="amount-${value.id}">Amount: ${value.amount}</p>
                                     <button type="button" class="btn btn-danger" onclick="decreaseAmount(${value.id}) alt="Increase drink amount.">-</button>
                                     <button type="button" class="btn btn-info" onclick="increaseQuantity(${value.id})">+</button>
                                 </div>
@@ -111,7 +95,6 @@ function loadCart(){
 
             });
             
-            // can only call this when on the cart page:
             document.querySelector('#cartDisplaygrr').insertAdjacentHTML('beforeend', bs_card);
             document.getElementById('tpb').innerHTML = 'Total: $' + totalPrice;    
                 
@@ -120,8 +103,8 @@ function loadCart(){
 function increaseQuantity(id){
 
     // get value with id as key.
-    const value = JSON.parse(localStorage.getItem(id)); // THIS IS RETURNING NULL!!!
-    console.log(value);
+    const value = JSON.parse(localStorage.getItem(id));
+    console.log(value); // prints correctly.
 
     if(!value){
         console.log("no item found");
@@ -133,18 +116,18 @@ function increaseQuantity(id){
 
         // Update totalprice (global).
         totalPrice += value.drinkPrice * value.amount;
-        document.getElementById('tpb').innerHTML = 'Total: $' + totalPrice; // IT BECAME NaN!    
+        document.getElementById('tpb').innerHTML = 'Total: $' + totalPrice; 
     
         // update it in localstorage. stores all drink info as well as new value and price
         localStorage.setItem(id, JSON.stringify(value));
         
         // Use id tags to update bootstrap card.
-        // NOT A VALID SELECTOR!
-        const amountElement = document.querySelector('#amount-${id}');
-        const priceElement = document.querySelector('#price-${id}');
+        //  Used the curly single quotes instead of regular single quote for my string and variables.
+        const amountElement = document.querySelector(`#amount-${id}`);
+        const priceElement = document.querySelector(`#price-${id}`);
 
-        amountElement.innerHTML = 'Amount: ${value.amount}';
-        priceElement.innerHTML = 'Amount: ${value.amount}';
+        amountElement.innerHTML = `Amount: ${value.amount}`;
+        priceElement.innerHTML = `Price: ${value.drinkPrice}`;
     }
 
 }
@@ -153,7 +136,6 @@ function decreaseAmount(id){
     
     console.log("rarrr");
     // // Find in ls where id.
-
     // drinkIndex.amount =- 1;
     // drinkIndex.drinkPrice -= drinkPrice;
     // // call update after.
