@@ -73,13 +73,13 @@ function loadCart(){
         
                         // Define drinkPrice.
                         value.drinkPrice = value.pricePerServing / value.servings;
-                        value.roundedDrinkPrice = value.drinkPrice.toFixed(2);
+                        // value.roundedDrinkPrice = value.drinkPrice.toFixed(2);
                         localStorage.setItem(key, JSON.stringify(value));
                         
                         itemsInCart += 1;
                         
                         totalPrice += value.roundedDrinkPrice;
-                        // value.roundedTotalPrice = totalPrice.toFixed(2);
+                        // value.roundedTotalPrice = valuetotalPrice.toFixed(2); //.toFixed() not a function.
 
                         // NEED TO MAKE IT ALIGN LEFT.
                         bs_card += `
@@ -105,8 +105,6 @@ function loadCart(){
             
             document.querySelector('#cartDisplaygrr').insertAdjacentHTML('beforeend', bs_card);
             document.getElementById('tpb').innerHTML = 'Total: $' + totalPrice;
-            
-            //
                 
 }       
                 
@@ -121,31 +119,32 @@ function increaseQuantity(id){
 
     else{
 
+        itemsInCart++;
         value.amount += 1;
 
         // Update total cost for that specific drink. There can be more than one of same drink item.
-        totalDupeDrinkPrice = value.drinkPrice += value.drinkPrice;
+        totalDupeDrinkPrice = value.roundedDrinkPrice * value.amount;
 
         // update it in localstorage. stores all drink info as well as new value and price.
         localStorage.setItem(id, JSON.stringify(value));
         
         // Update bootstrap card.
         const amountElement = document.querySelector(`#amount-${id}`);
-        const priceElement = document.querySelector(`#price-${id}`);
         amountElement.innerHTML = `Amount: ${value.amount}`;
+
+        const priceElement = document.querySelector(`#price-${id}`);
         priceElement.innerHTML = `$${totalDupeDrinkPrice}`;
         
         // Update totalprice (global).
         totalPrice += value.roundedDrinkPrice * value.amount;
-        // roundedTotalPrice = totalPrice.toFixed(2);
-        document.getElementById('tpb').innerHTML = 'Total: $' + roundedTotalPrice; 
+        // value.roundedTotalPrice = totalPrice.toFixed(2); //
+        document.getElementById('tpb').innerHTML = 'Total: $' + totalPrice; 
     }
 
 }
 
 
 
-// PRICES ARENT BEING UPDATED PROPERLY FOR METHODS.
 function decreaseAmount(id){
     
     // get value with id as key.
@@ -157,6 +156,7 @@ function decreaseAmount(id){
 
     else{
 
+        itemsInCart--;
         // Remove before checking.
         value.amount -= 1;
 
@@ -175,19 +175,18 @@ function decreaseAmount(id){
 
         // Update combined price of that specific drink id.
         totalDupeDrinkPrice = value.drinkPrice * value.amount;
-
+        
         // update it in localstorage. stores all drink info as well as new amount and price
         localStorage.setItem(id, JSON.stringify(value));
 
         // update bootstrap card.
         const amountElement = document.querySelector(`#amount-${id}`);
-        const priceElement = document.querySelector(`#price-${id}`);
         amountElement.innerHTML = `Amount: ${value.amount}`;
-        priceElement.innerHTML = `$${totalDupeDrinkPrice}`;
-
-        // Update totalprice (global). NOT BEING DONE PROPERLY!
-        totalPrice -= value.drinkPrice * value.amount;
-        roundedTotalPrice = totalPrice.toFixed(2);
-        document.getElementById('tpb').innerHTML = 'Total: $' + roundedTotalPrice; 
+        const priceElement = document.querySelector(`#price-${id}`);
+        priceElement.innerHTML = `$${totalDupeDrinkPrice.toFixed(2)}`;
+        
+        // Update totalprice (global).
+        totalPrice -= value.roundedDrinkPrice * value.amount;
+        document.getElementById('tpb').innerHTML = 'Total: $' + totalPrice; 
     }
 }
