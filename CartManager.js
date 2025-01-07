@@ -133,9 +133,9 @@ function increaseQuantity(id){
     else{
 
         value.amount += 1;
-        // UPDATE THE DRINK PRICE IF THERE IS A DUPLICATE DRINK! ONLY DISPLAYS PRICE FOR ONE DRINK...
-        // BUT CAN'T UPDATE DIRECTLY TO DRINKPRICE EITHER BECAUSE THE THIRD DUPLICATE DRINK WILL BE DOUBLE THE PRICE.
-        // totalDupeDrinkPrice = value.drinkPrice += value.drinkPrice;
+
+        // Update total cost for that specific drink. There can be more than one of same drink item.
+        totalDupeDrinkPrice = value.drinkPrice += value.drinkPrice;
 
         // update it in localstorage. stores all drink info as well as new value and price
         localStorage.setItem(id, JSON.stringify(value));
@@ -146,9 +146,9 @@ function increaseQuantity(id){
         const priceElement = document.querySelector(`#price-${id}`);
         
         amountElement.innerHTML = `Amount: ${value.amount}`;
-        priceElement.innerHTML = `$${value.drinkPrice}`; // The total price increases but not the specific bs card drink price.
+        priceElement.innerHTML = `$${totalDupeDrinkPrice}`;
         
-        // Update totalprice (global). //
+        // Update totalprice (global).
         totalPrice += value.drinkPrice * value.amount;
         roundedTotalPrice = totalPrice.toFixed(2);
         document.getElementById('tpb').innerHTML = 'Total: $' + roundedTotalPrice; 
