@@ -1,7 +1,9 @@
 var itemsInCart = 0;
 var totalPrice = 0;
+var roundedTotalPrice = 0; // rounds total price to two decimals.
 
-let results = {};
+const fromDb = undefined;
+const arr = fromDb || []; // Track bs_cards added by drink ID. Prevent
 
 let bs_card = "";
 
@@ -32,6 +34,9 @@ function addToCart(drinkID){
             console.log("value", value);
             value.amount += 1;
             localStorage.setItem(key, JSON.stringify(value));
+
+            // define variable to track drink price...
+            // value.totalDupeDrinkPrice = value.drinkPrice + value.drinkPrice;
             
             // print amount of duplicate drink
             console.log(value.title, ":", value.amount);
@@ -57,46 +62,61 @@ function addToCart(drinkID){
 
 function loadCart(){
     
-    document.getElementById("cartStatusID").innerHTML = "Press 'Checkout' button to submit order!";
-    
-
-        // if(value.id > 1){
-        //     value.amount = 1;
-        // }
+    // This is not properly displayed in view of the page:
+    // document.getElementById("cartStatusID").innerHTML = "Press 'Checkout' button to submit order!";
 
     Object.keys(localStorage).forEach(key =>{
 
                     const value = JSON.parse(localStorage.getItem(key)); // parse from where it is stored with stringify.
 
-                    value.amount = 1;
-                    value.drinkPrice = value.pricePerServing / value.servings;
 
-                    //itemsInCart += 1;
-                    totalPrice += value.drinkPrice;
-                    // NEED TO MAKE IT ALIGN LEFT.
-                    bs_card += `
-                    <div class="row">
+                    // CHECK THAT MULTIPLE CARDS FOR SAME DRINK DO NOT EXIST.
+                    // HAVE TO DO IT UP THERE BECAUSE IT PREVENTS FROM ADDING ANOTHER OF THE SAME UP THERE!!
+                    if(arr.includes(value.id)){
+                        console.log(value.title, "already in");
+                        console.log(arr);
+                    }
+                    else{
+                        
+                        arr.push(key);
+                        console.log("just added in", value.title);
+                        console.log(arr);
+                        
+                        // Define drinkPrice...
+                        value.drinkPrice = value.pricePerServing / value.servings; //totalDupeDrinkPrice...
+                        // let roundedDrinkPrice = value.drinkPrice.toFixed(2);
+                        // need to implement this... add a cart limit:
+                        //itemsInCart += 1;
+                        
+                        totalPrice += value.drinkPrice; // NEED TO ADD A TWO DECIMAL CUT/ROUND OFF.
+                        roundedTotalPrice = totalPrice.toFixed(2);
+                        // NEED TO MAKE IT ALIGN LEFT.
+                        bs_card += `
+                        <div class="row">
                         <div class="col-4" id="${value.id}">
                             <div class=" card h-[calc(100%+1rem)] text-black bg-light">
-                                <div class="card-body">
-                                    <img class="card-img-top" src="${value.image}" alt="${value.title}"/>
-                                    <h5 class="card-title">${value.title}</h2>
-                                    <!--Use id for querySelector.-->
-                                    <p id="price-${value.id}" style="color:black">$${value.drinkPrice}</p>
-                                    <p id="amount-${value.id}">Amount: ${value.amount}</p>
-                                    <button type="button" class="btn btn-danger" onclick="decreaseAmount(${value.id}) alt="Increase drink amount.">-</button>
-                                    <button type="button" class="btn btn-info" onclick="increaseQuantity(${value.id})">+</button>
-                                </div>
+                            <div class="card-body">
+                            <img class="card-img-top" src="${value.image}" alt="${value.title}"/>
+                            <h5 class="card-title">${value.title}</h2>
+                            <!--Use id for querySelector.-->
+                            <p id="price-${value.id}" style="color:black">$${value.drinkPrice}</p>
+                            <p id="amount-${value.id}">Amount: ${value.amount}</p>
+                            <button type="button" class="btn btn-danger" onclick="decreaseAmount(${value.id})" alt="Decrease drink amount.">-</button>
+                            <button type="button" class="btn btn-info" onclick="increaseQuantity(${value.id})" alt="Increase drink amount.">+</button>
                             </div>
-                        </div>
-                    </div>
-                    `
+                            </div>
+                            </div>
+                            </div>
+                            `
+                    }
 
 
             });
             
             document.querySelector('#cartDisplaygrr').insertAdjacentHTML('beforeend', bs_card);
-            document.getElementById('tpb').innerHTML = 'Total: $' + totalPrice;    
+            document.getElementById('tpb').innerHTML = 'Total: $' + roundedTotalPrice;
+            
+            //
                 
 }       
                 
@@ -113,31 +133,73 @@ function increaseQuantity(id){
     else{
 
         value.amount += 1;
+        // UPDATE THE DRINK PRICE IF THERE IS A DUPLICATE DRINK! ONLY DISPLAYS PRICE FOR ONE DRINK...
+        // BUT CAN'T UPDATE DIRECTLY TO DRINKPRICE EITHER BECAUSE THE THIRD DUPLICATE DRINK WILL BE DOUBLE THE PRICE.
+        // totalDupeDrinkPrice = value.drinkPrice += value.drinkPrice;
 
-        // Update totalprice (global).
-        totalPrice += value.drinkPrice * value.amount;
-        document.getElementById('tpb').innerHTML = 'Total: $' + totalPrice; 
-    
         // update it in localstorage. stores all drink info as well as new value and price
         localStorage.setItem(id, JSON.stringify(value));
         
         // Use id tags to update bootstrap card.
-        //  Used the curly single quotes instead of regular single quote for my string and variables.
+        //  Used a backtick instead of regular single quote for my string and variables.
+        const amountElement = document.querySelector(`#amount-${id}`);
+        const priceElement = document.querySelector(`#price-${id}`);
+        
+        amountElement.innerHTML = `Amount: ${value.amount}`;
+        priceElement.innerHTML = `$${value.drinkPrice}`; // The total price increases but not the specific bs card drink price.
+        
+        // Update totalprice (global). //
+        totalPrice += value.drinkPrice * value.amount;
+        roundedTotalPrice = totalPrice.toFixed(2);
+        document.getElementById('tpb').innerHTML = 'Total: $' + roundedTotalPrice; 
+    }
+
+}
+
+
+
+// THIS DOESN'T WORK FOR NOW:
+function decreaseAmount(id){
+    
+    // get value with id as key.
+    const value = JSON.parse(localStorage.getItem(id));
+    console.log(value); // prints correctly.
+
+    if(!value){
+        console.log("no item found");
+    }
+
+    else{
+
+        // Remove before checking.
+        value.amount -= 1;
+        if(value.amount <= 1){
+
+            // remove card completely.
+            localStorage.removeItem(id);
+            // Using loadCart re-adds all the cards that ALREADY EXIST in loadCart().
+            loadCart();
+        }
+
+
+        // THIS not working... now..?..:
+
+        // Update amount and combined price of that specific drink (id).
+        value.drinkPrice -= drinkPrice * value.amount;
+
+        // update it in localstorage. stores all drink info as well as new value and price
+        localStorage.setItem(id, JSON.stringify(value));
+        
+        // Use id tags to update bootstrap card.
         const amountElement = document.querySelector(`#amount-${id}`);
         const priceElement = document.querySelector(`#price-${id}`);
 
         amountElement.innerHTML = `Amount: ${value.amount}`;
         priceElement.innerHTML = `Price: ${value.drinkPrice}`;
+
+        // Update totalprice (global).
+        totalPrice -= value.drinkPrice * value.amount;
+        roundedTotalPrice = totalPrice.toFixed(2);
+        document.getElementById('tpb').innerHTML = 'Total: $' + roundedTotalPrice; 
     }
-
-}
-
-function decreaseAmount(id){
-    
-    console.log("rarrr");
-    // // Find in ls where id.
-    // drinkIndex.amount =- 1;
-    // drinkIndex.drinkPrice -= drinkPrice;
-    // // call update after.
-    // loadCart();
 }
