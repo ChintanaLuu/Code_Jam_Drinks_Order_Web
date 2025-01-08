@@ -29,8 +29,6 @@ import styles.js; // for card hover.
 
   transform: scale(1.15); /*15% bigger*/
 
-  styles.updateHoverInfo(); // How to call a JS function on a css file?
-
 }
   
 
