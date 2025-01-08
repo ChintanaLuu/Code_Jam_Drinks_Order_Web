@@ -51,8 +51,9 @@
       <!--move this into a .js file later.-->
       <script>
         
-        const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
-                
+        //const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
+        const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=&type=Drink"
+        
         fetch(API_URL)
         .then(res => {
           if (!res.ok) {

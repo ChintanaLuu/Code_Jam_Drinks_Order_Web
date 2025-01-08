@@ -1,3 +1,5 @@
+// All pages use header and footer.
+
 .header{
   text-align: center;
   height: 10%;
@@ -7,7 +9,6 @@
 
 .center-body{
     text-align: center;
-    margin-top: 10.8%;
     width: 100%;
     height:100%;
     background-color: #85CCF0;
@@ -18,11 +19,3 @@
       text-align: center;
       background-color: #a7ca56;
 }
-
-/* Checkout Page */
-/* .happy-cat-animation{
-
-    left: 0px;
-    //transform: scale
-    background: url(cute-and-funny-little-cat-cartoon-illustration-vector.jpg);
-  } */

@@ -36,7 +36,7 @@
         
         <form action="deliveryStatus.html">
             
-            <div class="container center-body"> <!--bg. ADD A MARGIN TOP! MB, DFLEX, ETC..-->
+            <div class="center-body"> <!--bg. ADD A MARGIN TOP! MB, DFLEX, ETC..-->
                 <!-- Names -->
                 <div class="row">
                     <!-- for md, sm, or lg? -->
@@ -89,6 +89,7 @@
                         <!-- Once they press checkout button, reset the cart. -->
                         <button type="submit" class="btn btn-success">Checkout!</button>
                         <script>
+                            // localStorage.foreach is not a function
                             localStorage.forEach(element => {
                                 localStorage.removeItem(element);
                             });
