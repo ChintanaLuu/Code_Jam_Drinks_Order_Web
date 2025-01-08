@@ -1,5 +1,6 @@
 /* Running it in live view makes the colors darker for some reason.... */
 
+import styles.js; // for card hover.
 
 .header{
   text-align: center;
@@ -16,3 +17,20 @@
       text-align: center;
       background-color: #a7ca56;
 }
+
+
+
+// Expand and display drinkInfo onhover.
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+
+  transform: scale(1.15); /*15% bigger*/
+
+  styles.updateHoverInfo(); // How to call a JS function on a css file?
+
+}
+  
+
