@@ -51,16 +51,19 @@
       <!--move this into a .js file later.-->
       <script>
         
-        //const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
-        const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=&type=Drink"
-        
+        const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
+                
         fetch(API_URL)
         .then(res => {
           if (!res.ok) {
             throw new Error('Network response was not ok'); // Fetch returns nothing due to no wifi connection
           }
           return res.json(); // returns entire OK response converted to json. no network error.
-          document.getElementById("statusID").innerHTML = "Please reload and try again. API credits may have ran out for the day or there is a network error.";
+          document.getElementById("statusID").innerHTML = "Please reload and try again. May be a network error.";
+          if(!res === 402){
+            document.getElementById("statusID").innerHTML = "API credits have ran out for the day. Please try again tomorrow."; 
+          }
+
         })
         
         .then(data => {
@@ -99,7 +102,7 @@
   <div class="row">
     <p>Drinks ordering website using Spoonacular API.</p>
     <p><b>Created by Chintana Luu</b></p>
-    <p>Last Updated: December 2024</p>
+    <p>Last Updated: January 2025</p>
   </div>
 </footer>
 

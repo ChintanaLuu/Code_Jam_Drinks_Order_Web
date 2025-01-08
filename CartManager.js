@@ -11,7 +11,7 @@ function addToCart(drinkID){
     
     // GETS drink information.
 
-    const API_URL = `https://api.spoonacular.com/recipes/${drinkID}/information?apiKey=`;
+    const API_URL = `https://api.spoonacular.com/recipes/${drinkID}/information?apiKey=HIDDEN_API_KEY`;
     
     fetch(API_URL)
     .then(res => {
