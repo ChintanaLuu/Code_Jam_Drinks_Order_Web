@@ -5,8 +5,7 @@ function updateHoverInfo(id){
     const drinkID = id;
 
     // Fetch drink info using API and display it.
-    // Store API results later.
-    
+
     const API_URL = `https://api.spoonacular.com/recipes/${drinkID}/information?apiKey=`;
 
     fetch(API_URL)
@@ -20,21 +19,19 @@ function updateHoverInfo(id){
 
     .then(data => {
 
-    // It already has some things like likes, vegan, etc.....
-        const drink = data.results; // undefined...
+        const drink = data;
         console.log("the drink", drink);
 
-        // drink.drinkInfo = `Vegan: ${drink.vegan}, Gluten: ${drink.glutenFree}, Dairy: ${drink.dairyFree}`;
+        drink.drinkInfo = `Vegan: ${drink.vegan}, Gluten: ${drink.glutenFree}, Dairy: ${drink.dairyFree}`;
 
         const infoElement = document.querySelector(`#drinkInfo-${drink.id}`);
-        infoElement.innerHTML = drink.drinkInfo; // It updates and adds a text but becomes undefined after...
-        // NEED TO MAKE IT CHANGE BACK TO NO TEXT AFTER MOUSE NOT OVER ANYMORE.
+        infoElement.innerHTML = drink.drinkInfo; 
 
     })
 
 
     .catch(error => {
-        console.error('Error:', error); // cannot read properties of undefined (reading 'id).
+        console.error('Error:', error);
     });
     
 }
