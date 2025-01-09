@@ -77,7 +77,7 @@
           const results = data.results;
           results.forEach(drink => {
             const drinkHTML = `
-            <div class="col-lg-3 col-md-4 col-sm-6 dflex align-items-stretch" onmouseover="updateHoverInfo(${drink.id})">
+            <div class="col-lg-3 col-md-4 col-sm-6 dflex align-items-stretch" onmouseover="updateHoverInfo(${drink.id})" onmouseout="updateOutInfo(${drink.id})">
               <div class="card h-100 text-black bg-light">
                 <div class="card-body">
                   <img class="card-img-top" src="${drink.image}" alt="${drink.title} height="100px" width="100px"/>

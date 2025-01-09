@@ -1,7 +1,5 @@
 function updateHoverInfo(id){
 
-    console.log("hello hello hello hello");
-
     const drinkID = id;
 
     // Fetch drink info using API and display it.
@@ -34,4 +32,12 @@ function updateHoverInfo(id){
         console.error('Error:', error);
     });
     
+}
+
+// Set innerHTML back to blank once mouse out.
+function updateOutInfo(id){
+
+    const infoElement = document.querySelector(`#drinkInfo-${id}`);
+    infoElement.innerHTML = ""; // Set to blank. 
+
 }
