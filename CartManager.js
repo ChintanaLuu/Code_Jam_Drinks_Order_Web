@@ -11,7 +11,7 @@ function addToCart(drinkID){
     
     // GETS drink information.
 
-    const API_URL = `https://api.spoonacular.com/recipes/${drinkID}/information?apiKey=`;
+    const API_URL = `https://api.spoonacular.com/recipes/${drinkID}/information?apiKey=eb02b9f4564547709316d45bbd4bc718`;
     
     fetch(API_URL)
     .then(res => {
@@ -36,7 +36,7 @@ function addToCart(drinkID){
 
             // define variable to track drink price...
             value.roundedDrinkPrice = value.drinkPrice.toFixed(2);
-            value.totalDupeDrinkPrice = value.roundedDrinkPrice * value.amount;//value.drinkPrice;
+            value.totalDupeDrinkPrice = value.roundedDrinkPrice * value.amount;
             localStorage.setItem(key, JSON.stringify(value));
 
 
@@ -73,7 +73,7 @@ function loadCart(){
         
                         // Define drinkPrice.
                         value.drinkPrice = value.pricePerServing / value.servings;
-                        // value.roundedDrinkPrice = value.drinkPrice.toFixed(2);
+                        value.roundedDrinkPrice = value.drinkPrice.toFixed(2);
                         localStorage.setItem(key, JSON.stringify(value));
                         
                         itemsInCart += 1;

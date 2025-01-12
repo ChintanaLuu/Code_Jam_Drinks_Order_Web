@@ -20,7 +20,7 @@
           callSpoonacularAPI(); // Access to script blocked CORS policy.
         </script> -->
         
-        <!-- i used "header" CSS class here!! -->
+        <!-- i used "header" CSS class here!! it changed to white when added styles.js now for some reason-->
         <header class="header bg-#a7ca56 text-white d-flex align-items-center fixed-top">
           
           <div class="row">
@@ -53,8 +53,8 @@
       <script>
         
         //const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=HIDDEN_API_KEY&type=Drink"
-        const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=&type=Drink";
-        
+        const API_URL= "https://api.spoonacular.com/recipes/complexSearch?apiKey=eb02b9f4564547709316d45bbd4bc718&type=Drink";
+
         fetch(API_URL)
         .then(res => {
           if (!res.ok) {
@@ -74,10 +74,11 @@
           // NEED TO ADJUST ADD TO CART BUTTON TO BE AT SAME Y.POS...
           
           // use bootstrap card and CSS card. Added an onmouseover tag.
+          // onmouseover="updateHoverInfo(${drink.id})" onmouseout="updateOutInfo(${drink.id})"
           const results = data.results;
           results.forEach(drink => {
             const drinkHTML = `
-            <div class="col-lg-3 col-md-4 col-sm-6 dflex align-items-stretch" onmouseover="updateHoverInfo(${drink.id})" onmouseout="updateOutInfo(${drink.id})">
+            <div class="col-lg-3 col-md-4 col-sm-6 dflex align-items-stretch">
               <div class="card h-100 text-black bg-light">
                 <div class="card-body">
                   <img class="card-img-top" src="${drink.image}" alt="${drink.title} height="100px" width="100px"/>
